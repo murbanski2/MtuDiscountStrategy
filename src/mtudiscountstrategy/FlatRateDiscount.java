@@ -22,9 +22,13 @@ public class FlatRateDiscount {
     }
     
     public static void main(String[] args) {
+        //My test class
         FlatRateDiscount discount = new FlatRateDiscount();
         double d = discount.getDiscount(3, 20.0);
+        System.out.println("Getting discount for 3 items, $20 each");
+        System.out.println("With default discount rate of 20%: " + d);
         discount.setDiscountRate(.10);
-        System.out.println(d);
+        d = discount.getDiscount(3, 20.0);
+        System.out.println("With 10% discount rate:" + d);
     }
 }
