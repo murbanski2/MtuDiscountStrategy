@@ -4,19 +4,22 @@ package mtudiscountstrategy;
  *
  * @author murbanski
  */
-public class FlatRateDiscount {
+public class FlatRateDiscount implements DiscountStrategy {
     private double discountRate = .20;
     //private double price = 20.00;
     //private int qty = 3;
     
+    @Override
     public double getDiscount(int qty, double price) {
         return  (price * qty * discountRate);        
     }
 
+    @Override
     public double getDiscountRate() {
         return discountRate;
     }
 
+    @Override
     public void setDiscountRate(double discountRate) {
         this.discountRate = discountRate;
     }
