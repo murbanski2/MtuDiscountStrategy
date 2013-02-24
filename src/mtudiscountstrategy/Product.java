@@ -11,9 +11,8 @@ package mtudiscountstrategy;
 public class Product {
     private String productId;
     private String productName;
-    private String productDescription; //I don't know 
     private double productCost;
-    
+    private DiscountStrategy discountStrategy;
     
     //Setters and getters
 
@@ -33,13 +32,6 @@ public class Product {
         this.productName = productName;
     }
 
-    public String getProductDescription() {
-        return productDescription;
-    }
-
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
-    }
 
     public double getProductCost() {
         return productCost;
@@ -47,6 +39,14 @@ public class Product {
 
     public void setProductCost(double productCost) {
         this.productCost = productCost;
+    }
+
+    public DiscountStrategy getDiscountStrategy() {
+        return discountStrategy;
+    }
+
+    public void setDiscountStrategy(DiscountStrategy discountStrategy) {
+        this.discountStrategy = discountStrategy;
     }
     
 }
