@@ -6,10 +6,13 @@ package mtudiscountstrategy;
  */
 public interface DiscountStrategy {
 
-    double getDiscount(int qty, double price);
+    //getDiscount returns the discount amount
+    public abstract double getDiscount(int qty, double price);
+    
+    //getDiscountRate() is a regular getter.  Might not be used.
+    public abstract double getDiscountRate();
 
-    double getDiscountRate();
-
-    void setDiscountRate(double discountRate);
+    //setDiscountRate() is a regular setter.
+    public abstract void setDiscountRate(double discountRate);
     
 }
