@@ -13,9 +13,31 @@ public class Product {
     private String productName;
     private double productCost;
     private DiscountStrategy discountStrategy;
+
+    public Product(String productId, String productName, 
+            double productCost, DiscountStrategy discountStrategy) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productCost = productCost;
+        this.discountStrategy = discountStrategy;
+    }
+    
+    //Tester
+    public static void main(String[] args) {
+        DiscountStrategy ds = new FlatRateDiscount();
+        ds.setDiscountRate(.5);
+        Product prod = new Product("71", "Towel", 30.0, ds);
+        System.out.println("Product ID: " + prod.getProductId());
+        System.out.println("Product Name: " + prod.getProductName());
+        System.out.println("Product Cost: " + prod.getProductCost());
+        //I don't know if I like the way I am getting the discount.
+        //Maybe there should be a method in Product that passes the 
+        //quantity and price.
+        System.out.println("Discount on 5 items: " 
+                + prod.discountStrategy.getDiscount(5, prod.getProductCost()));
+    }
     
     //Setters and getters
-
     public String getProductId() {
         return productId;
     }
