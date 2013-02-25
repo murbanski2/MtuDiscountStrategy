@@ -5,21 +5,14 @@ package mtudiscountstrategy;
  * @author Mark Urbanski
  */
 public class LineItem {
-    private String productId;
+    //Pass in product and quantity from Receipt.
+    //Receipt will get product from FakeDatabase code in CodeSamples.txt
     private int quantity;
     private Product product;
 
-    public LineItem(String productId, int quantity) {
-        this.productId = productId;
+    public LineItem(Product product, int quantity) {
+        this.product = product;
         this.quantity = quantity;
-    }
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
     }
 
     public int getQuantity() {
