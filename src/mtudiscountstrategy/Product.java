@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package mtudiscountstrategy;
 
 /**
@@ -24,7 +20,7 @@ public class Product {
     
     //Tester
     public static void main(String[] args) {
-        DiscountStrategy ds = new FlatRateDiscount();
+        DiscountStrategy ds = new PercentOffDiscount();
         ds.setDiscountRate(.5);
         Product prod = new Product("71", "Towel", 30.0, ds);
         System.out.println("Product ID: " + prod.getProductId());
