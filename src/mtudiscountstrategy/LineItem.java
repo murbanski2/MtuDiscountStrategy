@@ -31,4 +31,26 @@ public class LineItem {
         this.product = product;
     }
     
+    public double getExtendedPrice() {
+        double extendedPrice = quantity * product.getProductCost();
+                
+                
+        return extendedPrice;
+    }
+    
+    public String getLineItemString() {
+        //This will output a string that will have ID, Name, Unit Price, 
+        //quantity, amount, and amount saved
+        String outLine = product.getProductId() + "\t" +
+                product.getProductName() + "\t" +
+                product.getProductCost() + "\t" +
+                quantity + "\t" +
+                getExtendedPrice() + "\t" + 
+                product.getDiscount(quantity, getExtendedPrice())  ;
+        return outLine;
+    }
+    
+    public static void main(String[] args) {
+        //This is where I will do my testing.
+    }
 }
