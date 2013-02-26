@@ -33,6 +33,11 @@ public class Product {
                 + prod.discountStrategy.getDiscount(5, prod.getProductCost()));
     }
     
+    //Get the discount from the discountStratagy
+    public double getDiscount(int qty, double price) {
+        return discountStrategy.getDiscount(qty, price);
+    }
+    
     //Setters and getters
     public String getProductId() {
         return productId;
