@@ -46,11 +46,17 @@ public class LineItem {
                 product.getProductCost() + "\t" +
                 quantity + "\t" +
                 getExtendedPrice() + "\t" + 
-                product.getDiscount(quantity, getExtendedPrice())  ;
+                product.getDiscount(quantity, product.getProductCost())  ;
         return outLine;
     }
     
     public static void main(String[] args) {
         //This is where I will do my testing.
+        DiscountStrategy ds = new PercentOffDiscount();
+        ds.setDiscountRate(.1);
+        Product prod = new Product("71", "Towel", 30.0, ds);
+        LineItem line = new LineItem(prod, 12);
+        System.out.println("Discount rate = .1, 12 items, 30/item");
+        System.out.println(line.getLineItemString());
     }
 }
