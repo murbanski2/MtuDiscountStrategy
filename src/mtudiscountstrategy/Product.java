@@ -12,6 +12,7 @@ public class Product {
 
     public Product(String productId, String productName, 
             double productCost, DiscountStrategy discountStrategy) {
+        //testString, testString, testDouble
         this.productId = productId;
         this.productName = productName;
         this.productCost = productCost;
@@ -35,6 +36,7 @@ public class Product {
     
     //Get the discount from the discountStratagy
     public double getDiscount(int qty, double price) {
+        //testInt, testDouble
         return discountStrategy.getDiscount(qty, price);
     }
     
@@ -44,6 +46,7 @@ public class Product {
     }
 
     public void setProductId(String productId) {
+        //testString
         this.productId = productId;
     }
 
@@ -52,6 +55,7 @@ public class Product {
     }
 
     public void setProductName(String productName) {
+        //testString
         this.productName = productName;
     }
 
@@ -61,6 +65,7 @@ public class Product {
     }
 
     public void setProductCost(double productCost) {
+        //testDouble
         this.productCost = productCost;
     }
 

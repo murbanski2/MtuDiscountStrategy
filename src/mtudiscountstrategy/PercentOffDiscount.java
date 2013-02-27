@@ -14,6 +14,7 @@ public class PercentOffDiscount implements DiscountStrategy {
     }
 
     public PercentOffDiscount(double discountRate) {
+        //testDouble
         this.discountRate = discountRate;
     }
     
@@ -21,6 +22,7 @@ public class PercentOffDiscount implements DiscountStrategy {
     
     @Override
     public double getDiscount(int qty, double price) {
+        //testInt, testDouble
         return  (price * qty * discountRate);        
     }
 
@@ -31,6 +33,7 @@ public class PercentOffDiscount implements DiscountStrategy {
 
     @Override
     public void setDiscountRate(double discountRate) {
+        //testDouble
         this.discountRate = discountRate;
     }
     
