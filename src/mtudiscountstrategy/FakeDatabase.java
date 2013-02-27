@@ -24,6 +24,7 @@ public class FakeDatabase {
 // Returns null if not found.
     public final Customer findCustomer(final String custId) {
         // validation is needed
+        //testString
         Customer customer = null;
         for(Customer c : customers) {
             if(custId.equals(c.getCustId())) {
@@ -39,6 +40,7 @@ public class FakeDatabase {
 // Returns null if not found.
     public final Product findProduct(final String prodId) {
         // validation is needed
+        //testString
         Product product = null;
         for(Product p : products) {
             if(prodId.equals(p.getProductId())) {

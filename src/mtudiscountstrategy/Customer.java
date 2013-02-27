@@ -9,6 +9,7 @@ public class Customer {
     private String custName;
 
     public Customer(String custId, String custName) {
+        //testString, testString
         this.custId = custId;
         this.custName = custName;
     }
@@ -18,6 +19,7 @@ public class Customer {
     }
 
     public void setCustId(String custId) {
+        //testString
         this.custId = custId;
     }
 
@@ -26,6 +28,7 @@ public class Customer {
     }
 
     public void setCustName(String custName) {
+        //testString
         this.custName = custName;
     }
     
