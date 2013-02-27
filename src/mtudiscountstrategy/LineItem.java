@@ -1,4 +1,4 @@
-package mtudiscountstrategy;
+ package mtudiscountstrategy;
 
 /**
  *
@@ -11,15 +11,31 @@ public class LineItem {
     private Product product;
 
     public LineItem(Product product, int quantity) {
+        //intTest
         this.product = product;
         this.quantity = quantity;
     }
+
+    public LineItem(String prodId, int quantity) {
+        //stringTest, intTest
+        //This will be where I set the product using prodId
+        //and the lookup function
+        DiscountStrategy ds = new PercentOffDiscount();
+        ds.setDiscountRate(.1);
+        this.product = new Product("71", "Towel", 30.0, ds);
+        this.quantity = quantity;
+    }
+    
+    
+    
+//    public LineItem getNewLineItem(String prodId, int qty)
 
     public int getQuantity() {
         return quantity;
     }
 
     public void setQuantity(int quantity) {
+        //Run intTest
         this.quantity = quantity;
     }
 
@@ -28,6 +44,8 @@ public class LineItem {
     }
 
     public void setProduct(Product product) {
+        //I think product will already be tested at this point, so no need
+        //to test again.
         this.product = product;
     }
     
