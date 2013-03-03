@@ -30,14 +30,13 @@ public class Product {
         //I don't know if I like the way I am getting the discount.
         //Maybe there should be a method in Product that passes the 
         //quantity and price.
-        System.out.println("Discount on 5 items: " 
-                + prod.discountStrategy.getDiscount(5, prod.getProductCost()));
+        System.out.println("Discount on 5 items: " + prod.getDiscount(5) );
     }
     
     //Get the discount from the discountStratagy
-    public double getDiscount(int qty, double price) {
+    public double getDiscount(int qty) {
         //testInt, testDouble
-        return discountStrategy.getDiscount(qty, price);
+        return discountStrategy.getDiscount(qty, productCost);
     }
     
     //Setters and getters
