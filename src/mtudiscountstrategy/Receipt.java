@@ -93,7 +93,7 @@ public class Receipt {
         String formatGrandTotal = 
                 String.format("%10s",dollar.format(grandTotal) ) ;
         
-        System.out.println("Thank you for shopping at Urb Mart, ");
+        System.out.println("\n\n\nThank you for shopping at Urb Mart, ");
         System.out.print("\nCustomer ID: ");
         System.out.println(customer.getCustId());
         System.out.print("\nHere are your purchases today, ");
