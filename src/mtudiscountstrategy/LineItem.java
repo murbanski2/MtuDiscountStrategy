@@ -56,8 +56,8 @@ public class LineItem {
         return extendedPrice;
     }
     
-    public double getDiscount(int qty) {
-        return product.getDiscount(qty);
+    public double getDiscount() {
+        return product.getDiscount(quantity);
     }
     
     public String getLineItemString() {
@@ -68,7 +68,7 @@ public class LineItem {
                 product.getProductCost() + "\t" +
                 quantity + "\t" +
                 getExtendedPrice() + "\t" + 
-                getDiscount(quantity)  ;
+                getDiscount()  ;
         return outLine;
     }
     
