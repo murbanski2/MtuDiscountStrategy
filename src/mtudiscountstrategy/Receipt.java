@@ -93,13 +93,18 @@ public class Receipt {
         String formatGrandTotal = 
                 String.format("%10s",dollar.format(grandTotal) ) ;
         
-        System.out.print("Thank you for shopping at Urb Mart, ");
-        System.out.println(customer.getCustName());
+        System.out.println("Thank you for shopping at Urb Mart, ");
         System.out.print("\nCustomer ID: ");
-        System.out.print(customer.getCustId());
-        System.out.println("\nHere are your purchases today");
-        System.out.println("ID\tPruduct Description\tUnit Cost\tQuantity\t" +
-                "Extended Cost\tDiscount");
+        System.out.println(customer.getCustId());
+        System.out.print("\nHere are your purchases today, ");
+        System.out.println(customer.getCustName());
+        System.out.println();
+        System.out.print("ID");
+        System.out.print("\tPruduct Description");
+        System.out.print("\tUnit Cost");
+        System.out.print("\tQuantity");
+        System.out.print("\tExtended Cost");
+        System.out.println("\tDiscount");
         for(LineItem item : lineItems) {
             System.out.println(item.getLineItemString());
         }
