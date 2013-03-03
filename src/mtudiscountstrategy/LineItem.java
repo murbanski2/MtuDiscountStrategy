@@ -56,6 +56,10 @@ public class LineItem {
         return extendedPrice;
     }
     
+    public double getDiscount(int qty) {
+        return product.getDiscount(qty);
+    }
+    
     public String getLineItemString() {
         //This will output a string that will have ID, Name, Unit Price, 
         //quantity, amount, and amount saved
@@ -64,7 +68,7 @@ public class LineItem {
                 product.getProductCost() + "\t" +
                 quantity + "\t" +
                 getExtendedPrice() + "\t" + 
-                product.getDiscount(quantity, product.getProductCost())  ;
+                getDiscount(quantity)  ;
         return outLine;
     }
     
