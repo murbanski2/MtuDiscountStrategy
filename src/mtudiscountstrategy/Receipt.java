@@ -1,5 +1,7 @@
 package mtudiscountstrategy;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author murbanski
@@ -31,7 +33,19 @@ public class Receipt {
         }
     }
 
-
+    public void addItemToSale(String prodId, int qty) {
+        //from CodeSamples
+	FakeDatabase db =  new FakeDatabase();
+        Product product = db.findProduct(prodId);
+        
+		// if found, add the lineItem to the receipt
+		// but it's the receipt's job to do this!
+        if(product != null) {
+            addLineItem(product, qty);
+        }
+        
+    }
+    
     public void addLineItem(Product product, int qty) {
         //From CodeSamples
         LineItem item = new LineItem(product, qty);
@@ -64,14 +78,50 @@ public class Receipt {
         for(LineItem item : lineItems) {
             totalDiscount += item.getDiscount();
         }
-        return totalDiscount;
+        return  totalDiscount;
+    }
+    
+    public void getReceipt() {
+        DecimalFormat dollar = new DecimalFormat("###,##0.00");
+        double subtotal = getTotalBeforeDiscount();
+        double discountTotal = getTotalDiscount();
+        double grandTotal = subtotal - discountTotal;
+        String formatSubtotal = 
+                String.format("%10s",dollar.format(subtotal) );
+        String formatDiscountTotal = 
+                String.format("%10s",dollar.format(discountTotal) );
+        String formatGrandTotal = 
+                String.format("%10s",dollar.format(grandTotal) ) ;
+        
+        System.out.print("Thank you for shopping at Urb Mart, ");
+        System.out.println(customer.getCustName());
+        System.out.print("\nCustomer ID: ");
+        System.out.print(customer.getCustId());
+        System.out.println("\nHere are your purchases today");
+        System.out.println("ID\tPruduct Description\tUnit Cost\tQuantity\t" +
+                "Extended Cost\tDiscount");
+        for(LineItem item : lineItems) {
+            System.out.println(item.getLineItemString());
+        }
+        System.out.println("\n");
+        System.out.println("\t\t\t             Subtotal: $" + formatSubtotal);
+        System.out.println("\t\t\tTotal Discount amount: $" + formatDiscountTotal);
+        System.out.println("\t\t\t          Grand Total: $" + formatGrandTotal);
+        System.out.println("\n\nCome again soon");
     }
     
     private void showError(String error ) {
         //I plan to do this with a popup later
         System.out.println(error + " in Receipt");
     }
-            
+
+    public static void main(String[] args) {
+        Receipt receipt = new Receipt("100");
+        receipt.addItemToSale("A101", 7);
+        receipt.addItemToSale("C222", 4);
+        receipt.getReceipt();
+        
+    }
 }
 
 
