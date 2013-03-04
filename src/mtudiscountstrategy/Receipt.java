@@ -12,16 +12,24 @@ public class Receipt {
     private Customer customer;
     
     public Receipt(String custId) {
-        setCustomer(custId);
+        if (stringIsValid(custId, "custId")) {
+            setCustomer(custId);
+        }
     }
     
     public final Customer getCustomer(String customerId) {
+        if (!stringIsValid(customerId, "customerId")) {
+            //This will already return null if customerId not valid
+        }
         FakeDatabase fakeDatabase = new FakeDatabase();
         customer = fakeDatabase.findCustomer(customerId);
         return customer;
     }
     
     public final void setCustomer(String customerId) {
+        if (!stringIsValid(customerId, "customerId")) {
+            //This one already has a good error
+        }
         FakeDatabase fakeDatabase = new FakeDatabase();
         Customer cust = fakeDatabase.findCustomer(customerId);
         if(cust == null) {
@@ -31,24 +39,29 @@ public class Receipt {
             customer = cust;
         }
     }
+    
 
     public final void addItemToSale(String prodId, int qty) {
         //from CodeSamples
-	FakeDatabase db =  new FakeDatabase();
-        Product product = db.findProduct(prodId);
-        
-		// if found, add the lineItem to the receipt
-		// but it's the receipt's job to do this!
-        if(product != null) {
-            addLineItem(product, qty);
+        if (stringIsValid(prodId, "prodId") && 
+                intIsValid(qty, "qty")) {
+            FakeDatabase db =  new FakeDatabase();
+            Product product = db.findProduct(prodId);
+
+                    // if found, add the lineItem to the receipt
+                    // but it's the receipt's job to do this!
+            if(product != null) {
+                addLineItem(product, qty);
+            }
         }
-        
     }
     
     public final void addLineItem(Product product, int qty) {
         //From CodeSamples
-        LineItem item = new LineItem(product, qty);
-        addToArray(item);
+        if (intIsValid(qty, "qty")) {
+            LineItem item = new LineItem(product, qty);
+            addToArray(item);
+        }
     }
     
 
@@ -114,10 +127,7 @@ public class Receipt {
         System.out.println("\n\nCome again soon");
     }
     
-    private void showError(String error ) {
-        //I plan to do this with a popup later
-        JOptionPane.showMessageDialog(null, error + " in Receipt");
-    }
+
 
     public final static void main(String[] args) {
         Receipt receipt = new Receipt("100");
@@ -126,6 +136,32 @@ public class Receipt {
         receipt.getReceipt();
         
     }
+    
+    //Testing code
+    private void showError(String error ) {
+        JOptionPane.showMessageDialog(null, error + " in Receipt");
+    }
+	
+    private boolean stringIsValid(String st, String variableName) {
+        boolean valid = true;
+        if (st == null || st.length() == 0) {
+            valid = false;
+            showError("Invalid string " + variableName);
+        }
+        return valid;
+    }
+
+
+
+    private boolean intIsValid(int i, String variableName) {
+        boolean valid = true;
+        if (i < 0) {
+            valid = false;
+            showError("Invalid integer " + variableName);
+        }
+        return valid;
+    }
+
 }
 
 

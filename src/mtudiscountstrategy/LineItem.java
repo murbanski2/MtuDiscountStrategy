@@ -1,5 +1,7 @@
  package mtudiscountstrategy;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Mark Urbanski
@@ -11,19 +13,22 @@ public class LineItem {
     private Product product;
 
     public LineItem(Product product, int quantity) {
-        //intTest
+        if (intIsValid(quantity, "quantity"))
         this.product = product;
         this.quantity = quantity;
     }
 
     public LineItem(String prodId, int quantity) {
-        //stringTest, intTest
+        
         //This will be where I set the product using prodId
         //and the lookup function
-        DiscountStrategy ds = new PercentOffDiscount();
-        ds.setDiscountRate(.1);
-        this.product = new Product("71", "Towel", 30.0, ds);
-        this.quantity = quantity;
+        if (stringIsValid(prodId, "prodId") && 
+                intIsValid(quantity, "quantity")) {
+            DiscountStrategy ds = new PercentOffDiscount();
+            ds.setDiscountRate(.1);
+            this.product = new Product("71", "Towel", 30.0, ds);
+            this.quantity = quantity;
+        }
     }
     
     
@@ -35,8 +40,9 @@ public class LineItem {
     }
 
     public final void setQuantity(int quantity) {
-        //Run intTest
-        this.quantity = quantity;
+        if (intIsValid(quantity, "quantity") ) {
+            this.quantity = quantity;
+        }
     }
 
     public final Product getProduct() {
@@ -81,4 +87,29 @@ public class LineItem {
         System.out.println("Discount rate = .1, 12 items, 30/item");
         System.out.println(line.getLineItemString());
     }
+    
+    private void showError(String error ) {
+        JOptionPane.showMessageDialog(null, error + " in LineItem");
+    }
+	
+    private boolean stringIsValid(String st, String variableName) {
+        boolean valid = true;
+        if (st == null || st.length() == 0) {
+            valid = false;
+            showError("Invalid string " + variableName);
+        }
+        return valid;
+    }
+
+
+    private boolean intIsValid(int i, String variableName) {
+        boolean valid = true;
+        if (i < 0) {
+            valid = false;
+            showError("Invalid integer " + variableName);
+        }
+        return valid;
+    }
+
+    
 }

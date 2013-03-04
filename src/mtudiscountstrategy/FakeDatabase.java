@@ -1,5 +1,7 @@
 package mtudiscountstrategy;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Mark Urbanski
@@ -23,33 +25,46 @@ public class FakeDatabase {
 // Just call this method to find a customer in the array by its id.
 // Returns null if not found.
     public final Customer findCustomer(final String custId) {
-        // validation is needed
-        //testString
+
         Customer customer = null;
-        for(Customer c : customers) {
-            if(custId.equals(c.getCustId())) {
-                customer = c;
-                break;
+        if (stringIsValid(custId, "custId") ) {
+            for(Customer c : customers) {
+                if(custId.equals(c.getCustId())) {
+                    customer = c;
+                    break;
+                }
             }
         }
-
         return customer;
     }
 
 // Just call this method to find a product in the array by its id.
 // Returns null if not found.
     public final Product findProduct(final String prodId) {
-        // validation is needed
-        //testString
         Product product = null;
-        for(Product p : products) {
-            if(prodId.equals(p.getProductId())) {
-                product = p;
-                break;
+        if (stringIsValid(prodId, "prodId") ) {
+            for(Product p : products) {
+                if(prodId.equals(p.getProductId())) {
+                    product = p;
+                    break;
+                }
             }
         }
-
         return product;
     }
+    
+    private void showError(String error ) {
+        JOptionPane.showMessageDialog(null, error + " in FakeDatabase");
+    }
+	
+    private boolean stringIsValid(String st, String variableName) {
+        boolean valid = true;
+        if (st == null || st.length() == 0) {
+            valid = false;
+            showError("Invalid string " + variableName);
+        }
+        return valid;
+    }
+
 } // end of class
 

@@ -37,7 +37,7 @@ public class NoDiscount implements DiscountStrategy {
 
     private void showError(String error ) {
         //I plan to do this with a popup later
-        JOptionPane.showMessageDialog(null, error + " in Receipt");
+        JOptionPane.showMessageDialog(null, error + " in NoDiscount");
     }
 	
     private boolean doubleIsValid(double d, String variableName) {

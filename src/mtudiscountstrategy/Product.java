@@ -1,5 +1,7 @@
 package mtudiscountstrategy;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Mark Urbanski
@@ -12,11 +14,14 @@ public class Product {
 
     public Product(String productId, String productName, 
             double productCost, DiscountStrategy discountStrategy) {
-        //testString, testString, testDouble
-        this.productId = productId;
-        this.productName = productName;
-        this.productCost = productCost;
-        this.discountStrategy = discountStrategy;
+        if (stringIsValid(productId, "productId") && 
+                stringIsValid(productName, "productName") && 
+                doubleIsValid(productCost, "productCost") ) {
+            this.productId = productId;
+            this.productName = productName;
+            this.productCost = productCost;
+            this.discountStrategy = discountStrategy;
+        }
     }
     
     //Tester
@@ -35,8 +40,11 @@ public class Product {
     
     //Get the discount from the discountStratagy
     public final double getDiscount(int qty) {
-        //testInt, testDouble
-        return discountStrategy.getDiscount(qty, productCost);
+        double val = 0.0;
+        if (intIsValid(qty, "qty") ) {
+            val = discountStrategy.getDiscount(qty, productCost);
+        }
+        return val;
     }
     
     //Setters and getters
@@ -45,8 +53,9 @@ public class Product {
     }
 
     public final void setProductId(String productId) {
-        //testString
-        this.productId = productId;
+        if (stringIsValid(productId, "productId") ) {
+            this.productId = productId;
+        }
     }
 
     public final String getProductName() {
@@ -54,8 +63,9 @@ public class Product {
     }
 
     public final void setProductName(String productName) {
-        //testString
-        this.productName = productName;
+        if (stringIsValid(productName, "productName") ) {
+            this.productName = productName;
+        }
     }
 
 
@@ -64,8 +74,9 @@ public class Product {
     }
 
     public final void setProductCost(double productCost) {
-        //testDouble
-        this.productCost = productCost;
+        if (doubleIsValid(productCost, "productCost")) {
+            this.productCost = productCost;
+        }
     }
 
     public final DiscountStrategy getDiscountStrategy() {
@@ -75,5 +86,37 @@ public class Product {
     public final void setDiscountStrategy(DiscountStrategy discountStrategy) {
         this.discountStrategy = discountStrategy;
     }
-    
+
+    //Testing functions
+    private void showError(String error ) {
+        JOptionPane.showMessageDialog(null, error + " in Product");
+    }
+	
+    private boolean stringIsValid(String st, String variableName) {
+        boolean valid = true;
+        if (st == null || st.length() == 0) {
+            valid = false;
+            showError("Invalid string " + variableName);
+        }
+        return valid;
+    }
+
+    private boolean doubleIsValid(double d, String variableName) {
+        boolean valid = true;
+        if (d <= 0.0) {
+            valid = false;
+            showError("Invalid double " + variableName);
+        }
+        return valid;
+    }
+
+    private boolean intIsValid(int i, String variableName) {
+        boolean valid = true;
+        if (i < 0) {
+            valid = false;
+            showError("Invalid integer " + variableName);
+        }
+        return valid;
+    }
+
 }
