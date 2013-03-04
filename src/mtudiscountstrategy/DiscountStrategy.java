@@ -1,18 +1,31 @@
 package mtudiscountstrategy;
 
 /**
- *
+ *This abstract class is the basis for Discount classes.
+ *<P>
+ * @DiscountStrategy.java    03/04/2013
  * @author Mark Urbanski
  */
+
 public interface DiscountStrategy {
 
-    //getDiscount() returns the discount amount
+    /**
+     * Returns the discount amount given a quantity and a price.
+     * @param qty
+     * @param price
+     * @return a double value for discount amount
+     */
     public abstract double getDiscount(int qty, double price);
     
-    //getDiscountRate() is a regular getter.  Might not be used.
+    /**
+     * A getter for the discount rate
+     * @return a double value
+     */
     public abstract double getDiscountRate();
 
-    //setDiscountRate() is a regular setter.
+    /*
+     * Setter for the discount rate.
+     */
     public abstract void setDiscountRate(double discountRate);
     
 }
