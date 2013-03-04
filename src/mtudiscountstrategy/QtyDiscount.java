@@ -1,5 +1,6 @@
 package mtudiscountstrategy;
 
+import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,7 +49,12 @@ public class QtyDiscount implements DiscountStrategy {
         }
     }
     
-    
+    private double roundDouble(double num) {
+        BigDecimal bd = new BigDecimal(Double.toString(num));
+        bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+        double val = bd.doubleValue();
+        return val;
+    }    
     
     @Override
     public final double getDiscount(int qty, double price) {
@@ -61,6 +67,7 @@ public class QtyDiscount implements DiscountStrategy {
                 discount = price * discountRate * qty;
             }
         }
+        discount = roundDouble(discount);
         return discount;
     }
 
