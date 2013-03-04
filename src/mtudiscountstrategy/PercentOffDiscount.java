@@ -1,29 +1,33 @@
 package mtudiscountstrategy;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author murbanski
  */
 public class PercentOffDiscount implements DiscountStrategy {
     private double discountRate = .20;
-    //private double price = 20.00;
-    //private int qty = 3;
 
     public PercentOffDiscount() {
         //don't do anything
     }
 
     public PercentOffDiscount(double discountRate) {
-        //testDouble
-        this.discountRate = discountRate;
+        if (doubleIsValid(discountRate, "discountRate") ) {
+            this.discountRate = discountRate;
+        }
     }
     
     
     
     @Override
     public final double getDiscount(int qty, double price) {
-        //testInt, testDouble
-        return  (price * qty * discountRate);        
+        double discount = 0.0;
+        if (intIsValid(qty, "qty") && doubleIsValid(price, "price")) {
+            discount = price * qty * discountRate;
+        }
+        return discount;
     }
 
     @Override
@@ -33,8 +37,9 @@ public class PercentOffDiscount implements DiscountStrategy {
 
     @Override
     public final void setDiscountRate(double discountRate) {
-        //testDouble
-        this.discountRate = discountRate;
+        if (doubleIsValid(discountRate, "discountRate") ) {
+            this.discountRate = discountRate;
+        }
     }
     
     public static void main(String[] args) {
@@ -47,4 +52,28 @@ public class PercentOffDiscount implements DiscountStrategy {
         d = discount.getDiscount(3, 20.0);
         System.out.println("With 10% discount rate:" + d);
     }
+    
+    private void showError(String error ) {
+        //I plan to do this with a popup later
+        JOptionPane.showMessageDialog(null, error + " in PercentOffDiscount");
+    }
+    
+    private boolean doubleIsValid(double d, String variableName) {
+        boolean valid = true;
+        if (d <= 0.0) {
+            valid = false;
+            showError("Invalid double " + variableName);
+        }
+        return valid;
+    }
+    
+    private boolean intIsValid(int i, String variableName) {
+        boolean valid = true;
+        if (i < 0) {
+            valid = false;
+            showError("Invalid integer " + variableName);
+        }
+        return valid;
+    }
+
 }

@@ -1,6 +1,7 @@
 package mtudiscountstrategy;
 
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,8 +11,6 @@ public class Receipt {
     private LineItem[] lineItems = new LineItem[0];
     private Customer customer;
     
-
-
     public Receipt(String custId) {
         setCustomer(custId);
     }
@@ -117,7 +116,7 @@ public class Receipt {
     
     private void showError(String error ) {
         //I plan to do this with a popup later
-        System.out.println(error + " in Receipt");
+        JOptionPane.showMessageDialog(null, error + " in Receipt");
     }
 
     public final static void main(String[] args) {

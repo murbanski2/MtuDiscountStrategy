@@ -1,5 +1,7 @@
 package mtudiscountstrategy;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Mark Urbanski
@@ -10,8 +12,11 @@ public class QtyDiscount implements DiscountStrategy {
 
     public QtyDiscount(double discountRate, int minimumForDiscount) {
         //testDouble, testInt
-        this.discountRate = discountRate;
-        this.minimumForDiscount = minimumForDiscount;
+        if (doubleIsValid(discountRate, "discountRate") &&
+                intIsValid(minimumForDiscount, "minimumForDiscount") ) {
+            this.discountRate = discountRate;
+            this.minimumForDiscount = minimumForDiscount;
+        }
     }
     
     public static void main(String[] args) {
@@ -24,19 +29,37 @@ public class QtyDiscount implements DiscountStrategy {
         //Test the edge case, or you may have trouble
         System.out.println("If 5 are purchased, the discount is ");
         System.out.println(d.getDiscount(5, 85.0));
+        
+        //DiscountStrategy bad = new QtyDiscount(-1.0, 2);
+        //DiscountStrategy bad2 = new QtyDiscount(.11, -2);
+        
+        //double a = d.getDiscount(4, -1.1);
+        //a = d.getDiscount(-1, 23.95);
+        d.setDiscountRate(-2.7);
+    }
+
+    public final int getMinimumForDiscount() {
+        return minimumForDiscount;
+    }
+
+    public final void setMinimumForDiscount(int minimumForDiscount) {
+        if (intIsValid(minimumForDiscount, "minimumForDiscount") ) {
+            this.minimumForDiscount = minimumForDiscount;
+        }
     }
     
     
     
     @Override
     public final double getDiscount(int qty, double price) {
-        //testInt, testDouble
-        double discount;
-        if (qty < minimumForDiscount) {
-            discount = 0.0;
-        }
-        else {
-            discount = price * discountRate * qty;
+        double discount = 0.0;
+        if (intIsValid(qty, "qty") && doubleIsValid(price, "price") ) {
+            if (qty < minimumForDiscount) {
+                discount = 0.0;
+            }
+            else {
+                discount = price * discountRate * qty;
+            }
         }
         return discount;
     }
@@ -48,10 +71,32 @@ public class QtyDiscount implements DiscountStrategy {
 
     @Override
     public final void setDiscountRate(double discountRate) {
-        //testDouble
-        this.discountRate = discountRate;
+        if (doubleIsValid(discountRate, "discountRate") ) {
+            this.discountRate = discountRate;
+        }
     }
-    
+    private void showError(String error ) {
+        //I plan to do this with a popup later
+        JOptionPane.showMessageDialog(null, error + " in QtyDiscount");
+    }
+
+    private boolean doubleIsValid(double d, String variableName) {
+        boolean valid = true;
+        if (d <= 0.0) {
+            valid = false;
+            showError("Invalid double " + variableName);
+        }
+        return valid;
+    }
+
+    private boolean intIsValid(int i, String variableName) {
+        boolean valid = true;
+        if (i < 0) {
+            valid = false;
+            showError("Invalid integer " + variableName);
+        }
+        return valid;
+    }
     
     
     
