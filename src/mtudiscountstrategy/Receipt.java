@@ -1,6 +1,9 @@
 package mtudiscountstrategy;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -123,13 +126,21 @@ public class Receipt {
         System.out.println("\n");
         System.out.println("\t\t\t             Subtotal: $" + formatSubtotal);
         System.out.println("\t\t\tTotal Discount amount: $" + formatDiscountTotal);
-        System.out.println("\t\t\t          Grand Total: $" + formatGrandTotal);
-        System.out.println("\n\nCome again soon");
+        System.out.println("\t\t\t          Grand Total: $" + formatGrandTotal);        
+        System.out.println("\nCome again soon");
+        System.out.println("Retain this receipt for your records");
+        Calendar c = Calendar.getInstance();
+        Date date = new Date();
+        String format = "MM/dd/yyyy hh:mm a";
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        date = c.getTime();
+        String formattedDate = sdf.format(date);
+        System.out.println(formattedDate);
     }
     
 
 
-    public final static void main(String[] args) {
+    public static void main(String[] args) {
         Receipt receipt = new Receipt("100");
         receipt.addItemToSale("A101", 7);
         receipt.addItemToSale("C222", 4);
