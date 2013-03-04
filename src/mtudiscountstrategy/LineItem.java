@@ -18,18 +18,18 @@ public class LineItem {
         this.quantity = quantity;
     }
 
-    public LineItem(String prodId, int quantity) {
-        
-        //This will be where I set the product using prodId
-        //and the lookup function
-        if (stringIsValid(prodId, "prodId") && 
-                intIsValid(quantity, "quantity")) {
-            DiscountStrategy ds = new PercentOffDiscount();
-            ds.setDiscountRate(.1);
-            this.product = new Product("71", "Towel", 30.0, ds);
-            this.quantity = quantity;
-        }
-    }
+//    public LineItem(String prodId, int quantity) {
+//        
+//        //This will be where I set the product using prodId
+//        //and the lookup function
+//        if (stringIsValid(prodId, "prodId") && 
+//                intIsValid(quantity, "quantity")) {
+//            DiscountStrategy ds = new PercentOffDiscount();
+//            ds.setDiscountRate(.1);
+//            this.product = new Product("71", "Towel", 30.0, ds);
+//            this.quantity = quantity;
+//        }
+//    }
     
     
     
