@@ -1,5 +1,6 @@
  package mtudiscountstrategy;
 
+import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 
 /**
@@ -57,7 +58,7 @@ public class LineItem {
     
     public final double getExtendedPrice() {
         double extendedPrice = quantity * product.getProductCost();
-                
+        extendedPrice = roundDouble(extendedPrice);        
                 
         return extendedPrice;
     }
@@ -77,6 +78,12 @@ public class LineItem {
                 getDiscount()  ;
         return outLine;
     }
+    private double roundDouble(double num) {
+        BigDecimal bd = new BigDecimal(Double.toString(num));
+        bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+        double val = bd.doubleValue();
+        return val;
+    }  
     
     public static void main(String[] args) {
         //This is where I will do my testing.
