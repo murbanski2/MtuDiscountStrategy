@@ -14,19 +14,19 @@ public class NoDiscount implements DiscountStrategy {
     }
     
     @Override
-    public double getDiscount(int qty, double price) {
+    public final double getDiscount(int qty, double price) {
         //testInt, testDouble
         //It doesn't matter what the qty and price values are.  Just return 0.
         return 0.0;
     }
 
     @Override
-    public double getDiscountRate() {
+    public final double getDiscountRate() {
         return 0.0;
     }
 
     @Override
-    public void setDiscountRate(double discountRate) {
+    public final void setDiscountRate(double discountRate) {
         //testDouble
         //I am not going to set anything.  NoDiscount MEANS no discount!
     }

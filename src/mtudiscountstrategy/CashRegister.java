@@ -7,15 +7,15 @@ package mtudiscountstrategy;
 public class CashRegister {
     private Receipt receipt;
     
-    public void startSale(String custId) {
+    public final void startSale(String custId) {
         receipt = new Receipt(custId);
     }
     
-    public void scanItem(String prodId, int quantity) {
+    public final void scanItem(String prodId, int quantity) {
         receipt.addItemToSale(prodId, quantity);
     }
     
-    public void endSale() {
+    public final void endSale() {
         receipt.getReceipt();
     }
     

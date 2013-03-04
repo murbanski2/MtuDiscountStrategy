@@ -14,20 +14,20 @@ public class Customer {
         this.custName = custName;
     }
 
-    public String getCustId() {
+    public final String getCustId() {
         return custId;
     }
 
-    public void setCustId(String custId) {
+    public final void setCustId(String custId) {
         //testString
         this.custId = custId;
     }
 
-    public String getCustName() {
+    public final String getCustName() {
         return custName;
     }
 
-    public void setCustName(String custName) {
+    public final void setCustName(String custName) {
         //testString
         this.custName = custName;
     }

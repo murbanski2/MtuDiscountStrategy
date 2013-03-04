@@ -16,13 +16,13 @@ public class Receipt {
         setCustomer(custId);
     }
     
-    public Customer getCustomer(String customerId) {
+    public final Customer getCustomer(String customerId) {
         FakeDatabase fakeDatabase = new FakeDatabase();
         customer = fakeDatabase.findCustomer(customerId);
         return customer;
     }
     
-    public void setCustomer(String customerId) {
+    public final void setCustomer(String customerId) {
         FakeDatabase fakeDatabase = new FakeDatabase();
         Customer cust = fakeDatabase.findCustomer(customerId);
         if(cust == null) {
@@ -33,7 +33,7 @@ public class Receipt {
         }
     }
 
-    public void addItemToSale(String prodId, int qty) {
+    public final void addItemToSale(String prodId, int qty) {
         //from CodeSamples
 	FakeDatabase db =  new FakeDatabase();
         Product product = db.findProduct(prodId);
@@ -46,7 +46,7 @@ public class Receipt {
         
     }
     
-    public void addLineItem(Product product, int qty) {
+    public final void addLineItem(Product product, int qty) {
         //From CodeSamples
         LineItem item = new LineItem(product, qty);
         addToArray(item);
@@ -62,7 +62,7 @@ public class Receipt {
     }
 
 
-    public double getTotalBeforeDiscount() {
+    public final double getTotalBeforeDiscount() {
         //from CodeSamples
         //Loop thru the LineItem array and add the extended prices
         double grandTotal = 0.0;
@@ -72,7 +72,7 @@ public class Receipt {
         return grandTotal;
     }    
     
-    public double getTotalDiscount() {
+    public final double getTotalDiscount() {
         //Loop thru the LineItem array and add the discounts
         double totalDiscount = 0.0;
         for(LineItem item : lineItems) {
@@ -81,7 +81,7 @@ public class Receipt {
         return  totalDiscount;
     }
     
-    public void getReceipt() {
+    public final void getReceipt() {
         DecimalFormat dollar = new DecimalFormat("###,##0.00");
         double subtotal = getTotalBeforeDiscount();
         double discountTotal = getTotalDiscount();
@@ -120,7 +120,7 @@ public class Receipt {
         System.out.println(error + " in Receipt");
     }
 
-    public static void main(String[] args) {
+    public final static void main(String[] args) {
         Receipt receipt = new Receipt("100");
         receipt.addItemToSale("A101", 7);
         receipt.addItemToSale("C222", 4);

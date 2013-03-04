@@ -29,7 +29,7 @@ public class QtyDiscount implements DiscountStrategy {
     
     
     @Override
-    public double getDiscount(int qty, double price) {
+    public final double getDiscount(int qty, double price) {
         //testInt, testDouble
         double discount;
         if (qty < minimumForDiscount) {
@@ -42,12 +42,12 @@ public class QtyDiscount implements DiscountStrategy {
     }
 
     @Override
-    public double getDiscountRate() {
+    public final double getDiscountRate() {
         return discountRate;
     }
 
     @Override
-    public void setDiscountRate(double discountRate) {
+    public final void setDiscountRate(double discountRate) {
         //testDouble
         this.discountRate = discountRate;
     }

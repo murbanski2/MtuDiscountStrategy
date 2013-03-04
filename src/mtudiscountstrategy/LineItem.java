@@ -30,37 +30,37 @@ public class LineItem {
     
 //    public LineItem getNewLineItem(String prodId, int qty)
 
-    public int getQuantity() {
+    public final int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public final void setQuantity(int quantity) {
         //Run intTest
         this.quantity = quantity;
     }
 
-    public Product getProduct() {
+    public final Product getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public final void setProduct(Product product) {
         //I think product will already be tested at this point, so no need
         //to test again.
         this.product = product;
     }
     
-    public double getExtendedPrice() {
+    public final double getExtendedPrice() {
         double extendedPrice = quantity * product.getProductCost();
                 
                 
         return extendedPrice;
     }
     
-    public double getDiscount() {
+    public final double getDiscount() {
         return product.getDiscount(quantity);
     }
     
-    public String getLineItemString() {
+    public final String getLineItemString() {
         //This will output a string that will have ID, Name, Unit Price, 
         //quantity, amount, and amount saved
         String outLine = product.getProductId() + "\t" +
